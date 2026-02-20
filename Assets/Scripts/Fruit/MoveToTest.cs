@@ -8,14 +8,22 @@ public class MoveToTest : MonoBehaviour
     public Transform goal;
     private NavMeshAgent agent;
 
+    [SerializeField] private FruitLineOfSight fruitLineOfSight;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
     }
 
     void Update()
     {
-        agent.destination = goal.position;
+        if (fruitLineOfSight.hasLineOfSight)
+        {
+            agent.destination = goal.position;
+        }
+        else
+        {
+            agent.destination = transform.position;
+        }
     }
 }
