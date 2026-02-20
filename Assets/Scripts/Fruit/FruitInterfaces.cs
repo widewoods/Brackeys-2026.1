@@ -7,12 +7,6 @@ public interface IMover
     void StopForAttack();
 }
 
-public interface IAttack
-{
-    bool CanAttack(Transform target, float distance);
-    void Attack();
-}
-
 public interface ITargetSensor
 {
     Transform AcquireTarget();
