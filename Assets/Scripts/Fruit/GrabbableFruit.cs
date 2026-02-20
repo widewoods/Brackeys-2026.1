@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GrabbableFruit : MonoBehaviour, IGrabbable
 {
-    [SerializeField] float behindDotThreshold = -0.3f;
     [SerializeField] float grabRange = 1.5f;
 
     FruitController brain;
