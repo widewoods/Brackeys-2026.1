@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hideSpeed = 2f;
     [SerializeField] private float normalSpeed = 5f;
     [SerializeField] private float acceleration = 50f;
-    [SerializeField] private float deceleration = 40f;
+    [SerializeField] private float deceleration = 15f; // 관성을 위해 감속도를 낮춤
     [SerializeField] private float dashMomentumDeceleration = 5f; 
 
     [Header("Dash Settings")]
@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     
     private bool isHiding = false;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource rollingSound; 
+    [SerializeField] private AudioSource dashSound;    
+
     [Header("Mouse Settings")]
     [SerializeField] private float mouseSpeed = 1.5f;
 
     private Rigidbody rb;
     private float xRot;
-    private float yRot; // 추가: 몸통 좌우 회전값을 누적할 변수
+    private float yRot; 
     private Transform camTr;
     private Vector3 moveInput;
 
@@ -53,7 +57,6 @@ public class PlayerController : MonoBehaviour
         originalCamLocalPos = camTr.localPosition; 
         mainCam.fieldOfView = normalFOV;
 
-        // 추가: 시작할 때 플레이어의 현재 Y 회전값을 가져옴 (시작하자마자 0도로 튀는 현상 방지)
         yRot = transform.eulerAngles.y; 
     }
 
@@ -65,7 +68,25 @@ public class PlayerController : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         moveInput = (transform.right * h + transform.forward * v).normalized;
 
-        // 수정: 앉아있지 않을 때(!isHiding)만 대시 가능하도록 조건 추가
+        // 사운드 로직: 실제 움직이는 속도에 비례해서 볼륨 조절
+        float currentSpeed = new Vector3(rb.velocity.x, 0, rb.velocity.z).magnitude;
+        float maxRunSpeed = isHiding ? hideSpeed : normalSpeed;
+
+        if (currentSpeed > 0.1f && !isDashing)
+        {
+            if (!rollingSound.isPlaying) rollingSound.Play();
+            
+            // 속도에 따라 볼륨이 0에서 1 사이로 부드럽게 변함
+            rollingSound.volume = Mathf.Clamp01(currentSpeed / maxRunSpeed);
+            
+            // 👉 바로 여기에 추가해 줘!
+            rollingSound.pitch = 0.5f + currentSpeed / maxRunSpeed * 0.5f;
+        }
+        else
+        {
+            if (rollingSound.isPlaying) rollingSound.Pause();
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && canDash && !isHiding)
         {
             StartCoroutine(DashProcess());
@@ -78,7 +99,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 수정: 물리 엔진 안에서 안전하게 몸통(좌우)을 회전시킴 -> 버벅임 해결!
         rb.MoveRotation(Quaternion.Euler(0f, yRot, 0f));
 
         if (!isDashing)
@@ -113,10 +133,11 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        
+        dashSound.Play(); 
 
         Vector3 dashDir = (moveInput.magnitude > 0.1f) ? moveInput : transform.forward;
         rb.velocity = dashDir * dashSpeed;
-        Debug.Log("Dashing");
 
         yield return new WaitForSeconds(dashDuration);
 
@@ -124,7 +145,6 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCoolTime);
         canDash = true;
-        Debug.Log("Dash is ready");
     }
 
     void HandleCameraEffects()
@@ -142,16 +162,13 @@ public class PlayerController : MonoBehaviour
 
     void Look()
     {
-        // 팁: GetAxis 대신 GetAxisRaw를 쓰면 마우스 인풋 딜레이가 줄어들어 더 빠릿합니다.
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSpeed; 
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSpeed;
 
-        // 카메라 위아래(X축) 회전
         xRot -= mouseY;
         xRot = Mathf.Clamp(xRot, -90f, 90f);
         camTr.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         
-        // 수정: transform.Rotate를 지우고, yRot 변수에 마우스 좌우 이동값만 누적
         yRot += mouseX; 
     }
 }
