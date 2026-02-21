@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -13,9 +14,10 @@ public class GrabFruit : MonoBehaviour
     private Transform cameraTransform;
 
     [SerializeField] private float range = 5f;
-    
+    [SerializeField] private GrabUI grabUI;
+
     // 과일을 잡기 위해 누르고 있던 시간을 측정할 변수
-    private float currentHoldTime = 0f; 
+    private float currentHoldTime = 0f;
     // 현재 바라보고 있는 과일을 기억할 변수 (시선을 돌리면 초기화하기 위함)
     private GameObject currentTarget = null;
 
@@ -51,6 +53,7 @@ public class GrabFruit : MonoBehaviour
                 {
                     currentTarget = hit.collider.gameObject;
                     currentHoldTime = 0f;
+                    grabUI.ChangeFillAmount(0);
                 }
 
                 float grabtime = hit.collider.gameObject.GetComponent<FruitController>().Stats.grabTime;
@@ -59,16 +62,17 @@ public class GrabFruit : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     currentHoldTime += Time.deltaTime;
-                    
+
                     Debug.Log($"잡는 중... {currentHoldTime:F1} / {grabtime:F1}");
+                    grabUI.ChangeFillAmount(currentHoldTime / grabtime);
 
                     // 누른 시간이 요구 시간(grabtime)을 채웠을 때
                     if (currentHoldTime >= grabtime)
                     {
                         Debug.Log("Grab!");
-                        
-                        currentHoldTime = 0f; 
-                        
+
+                        currentHoldTime = 0f;
+
                         // TODO: 여기에 실제로 과일을 획득하거나 파괴하는 로직을 추가하세요.
                         hit.collider.gameObject.SetActive(false); // 예시로 과일을 비활성화
 
@@ -87,6 +91,7 @@ public class GrabFruit : MonoBehaviour
                 }
                 else
                 {
+                    grabUI.ChangeFillAmount(0);
                     currentHoldTime = 0f;
                 }
             }

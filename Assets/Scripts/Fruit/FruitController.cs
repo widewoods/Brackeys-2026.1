@@ -7,6 +7,7 @@ public class FruitController : MonoBehaviour
 
     public ITargetSensor Sensor { get; private set; }
     public IMover Mover { get; private set; }
+    public IAttacker Attacker { get; private set; }
     public FruitStats Stats;
     public State currentState;
     private State previousState;
@@ -30,6 +31,7 @@ public class FruitController : MonoBehaviour
     {
         Sensor = GetComponent<ITargetSensor>();
         Mover = GetComponent<IMover>();
+        Attacker = GetComponent<IAttacker>();
         // Attack = GetComponent<IAttack>();
     }
 
@@ -77,14 +79,20 @@ public class FruitController : MonoBehaviour
                 //     break;
                 // }
 
+                if (Attacker != null && Attacker.CanAttack())
+                {
+                    Mover.StopForAttack();
+                    Attacker.Attack(target);
+                    break;
+                }
+
                 // 쫓기
                 Mover.MoveTo(target.position);
-
                 break;
             case State.Catched:
                 // Player를 잡은 상태
                 Mover.MoveTo(Counter.CounterPosition);
-                
+
                 break;
             case State.ReturnHome:
                 // 집 돌아가기

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayButton : MonoBehaviour
+public class ChangeScene : MonoBehaviour
 {
-    public void OnButtonPressed()
+    public void Newscene(int scene)
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(scene);
     }
 }
