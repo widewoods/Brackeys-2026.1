@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private Camera mainCam;
     private Vector3 originalCamLocalPos;
 
+    [SerializeField] private Renderer cartRenderer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -79,7 +81,6 @@ public class PlayerController : MonoBehaviour
             // 속도에 따라 볼륨이 0에서 1 사이로 부드럽게 변함
             rollingSound.volume = Mathf.Clamp01(currentSpeed / maxRunSpeed);
             
-            // 👉 바로 여기에 추가해 줘!
             rollingSound.pitch = 0.5f + currentSpeed / maxRunSpeed * 0.5f;
         }
         else
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
             if (rollingSound.isPlaying) rollingSound.Pause();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && !isHiding)
+        if (Input.GetKeyDown(KeyCode.F) && canDash && !isHiding)
         {
             StartCoroutine(DashProcess());
         }
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
         isHiding = Input.GetKey(KeyCode.LeftShift);
 
         HandleCameraEffects();
+        HandleShoppingCartAlpha();
     }
 
     void FixedUpdate()
@@ -158,6 +160,24 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPos = new Vector3(originalCamLocalPos.x, targetY, targetZ);
         
         camTr.localPosition = Vector3.Lerp(camTr.localPosition, targetPos, Time.deltaTime * cameraLerpSpeed);
+    }
+
+    void HandleShoppingCartAlpha()
+    {
+        // shift 키를 누르고 있을 때 쇼핑카트의 material의 알파값을 0.5로, 그렇지 않을 때 1로 변경
+        if (cartRenderer == null) return;
+
+        // 목표 알파값 설정
+        float targetAlpha = isHiding ? 0.5f : 1f;
+
+        // 인스펙터에 있는 여러 개의 머티리얼을 모두 가져와서 변경
+        Material[] materials = cartRenderer.materials;
+        for (int i = 0; i < materials.Length; i++)
+        {
+            Color color = materials[i].color;
+            color.a = targetAlpha;
+            materials[i].color = color; // 변경된 색상을 다시 적용 (핵심)
+        }
     }
 
     void Look()

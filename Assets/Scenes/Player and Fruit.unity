@@ -390,7 +390,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 660e37fe59af3184d911077046ff6a95, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ffdda8087c30e5349a8a9a42fdba970c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1158,6 +1158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 0}
   currentState: 0
+  deaggroRange: 0
+  loseSightTime: 0
+  home: {fileID: 0}
+  returnHomeRadius: 0
+  farFromHomeRadius: 0
 --- !u!195 &1838058535
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -3,13 +3,16 @@ using UnityEngine;
 public class FruitController : MonoBehaviour
 {
 
-    public enum State { IdleHome, Chase, ReturnHome, Grabbed }
+    public enum State { IdleHome, Chase, ReturnHome, Grabbed, Catched }
 
     public ITargetSensor Sensor { get; private set; }
     public IMover Mover { get; private set; }
     public FruitStats Stats;
     public State currentState;
     private State previousState;
+
+    public static int escapeCount = 0; // space 누른 횟수
+    public static int goalEscapeCount = 10; // 이 수치에 도달하면 플레이어 탈출
 
     Transform target;
 
@@ -57,9 +60,9 @@ public class FruitController : MonoBehaviour
 
                 // 플레이어랑 너무 멀어지면 ReturnHome으로 변경
                 float distanceFromPlayer = (transform.position - target.position).magnitude;
-                // bool tooFar = distanceFromPlayer >= deaggroRange;
+                bool tooFar = distanceFromPlayer >= deaggroRange;
                 bool lostTooLong = (Time.time - lastSeenTime) >= loseSightTime;
-                if (lostTooLong)
+                if (tooFar || lostTooLong)
                 {
                     target = null;
                     currentState = State.ReturnHome;
@@ -67,16 +70,21 @@ public class FruitController : MonoBehaviour
                 }
 
                 // 집에서 멀어지면 ReturnHome 으로 변경
-                float distanceFromHome = (transform.position - home.position).magnitude;
-                if (distanceFromHome >= farFromHomeRadius)
-                {
-                    currentState = State.ReturnHome;
-                    break;
-                }
+                // float distanceFromHome = (transform.position - home.position).magnitude;
+                // if (distanceFromHome >= farFromHomeRadius)
+                // {
+                //     currentState = State.ReturnHome;
+                //     break;
+                // }
 
                 // 쫓기
                 Mover.MoveTo(target.position);
 
+                break;
+            case State.Catched:
+                // Player를 잡은 상태
+                Mover.MoveTo(Counter.CounterPosition);
+                
                 break;
             case State.ReturnHome:
                 // 집 돌아가기
