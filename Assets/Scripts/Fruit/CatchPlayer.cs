@@ -10,7 +10,10 @@ public class CatchPlayer : MonoBehaviour
     private Camera fruitCamera;
     FruitController fruitController;
 
-    BoxCollider playerCollider;
+    BoxCollider[] playerCollider;
+    PlayerController playerController;
+
+    Transform playerTransform;
 
     void Start()
     {
@@ -40,7 +43,9 @@ public class CatchPlayer : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (((1 << other.gameObject.layer) & playerMask) == 0) return;
-        playerCollider = other.gameObject.GetComponent<BoxCollider>();
+        playerCollider = other.gameObject.GetComponentsInChildren<BoxCollider>();
+        playerController = other.gameObject.GetComponent<PlayerController>();
+        playerTransform = other.gameObject.transform;
         
         HandleCollision();
     }
@@ -54,17 +59,29 @@ public class CatchPlayer : MonoBehaviour
         
         Debug.Log("Contact with player");
         fruitController.currentState = FruitController.State.Catched;
-        playerCollider.enabled = false;
+        foreach (var collider in playerCollider)
+        {
+            collider.enabled = false;
+        }
         playerCamera.enabled = false;
+        playerController.IsCatched = true;
         fruitCamera.enabled = true;
+
+        playerTransform.position = PlayerSpawn.SpawnTransform.position;
+        // playerTransform.rotation = PlayerSpawn.SpawnTransform.rotation;
     }
 
     void HandleEscape()
     {
         Debug.Log("Player escaped");
+        
         fruitController.currentState = FruitController.State.ReturnHome;
-        playerCollider.enabled = true;
+        foreach (var collider in playerCollider)
+        {
+            collider.enabled = true;
+        }
         playerCamera.enabled = true;
+        playerController.IsCatched = false;
         fruitCamera.enabled = false;
     }
 }
