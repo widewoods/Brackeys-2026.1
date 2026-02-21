@@ -12,6 +12,12 @@ public interface ITargetSensor
     Transform AcquireTarget();
 }
 
+public interface IAttacker
+{
+    void Attack(Transform target);
+    bool CanAttack();
+}
+
 public interface IGrabbable
 {
     bool CanBeGrabbed(Transform grabber);

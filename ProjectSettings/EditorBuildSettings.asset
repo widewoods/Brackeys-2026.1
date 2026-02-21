@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 9ac2782600f5c4e44bfdccd35713318f
   - enabled: 1
-    path: Assets/Scenes/Grab 1.unity
+    path: Assets/Scenes/Map.unity
     guid: f9b3d5b21c1fc43c199836b6e37273ca
   m_configObjects: {}
