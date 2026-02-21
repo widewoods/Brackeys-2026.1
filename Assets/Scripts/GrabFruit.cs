@@ -40,9 +40,9 @@ public class GrabFruit : MonoBehaviour
 
                 // 손 움직이기
                 rightHand.position = Vector3.Lerp(rightHand.position, hit.point, Time.deltaTime * 10f);
-
                 // 카메라 보는 방향으로 손 회전하기
-                rightHand.rotation = Quaternion.Lerp(rightHand.rotation, Quaternion.LookRotation(hit.normal), Time.deltaTime * 10f);
+                rightHand.rotation = Quaternion.Lerp(rightHand.rotation, Quaternion.LookRotation(hit.normal) * Quaternion.Euler(-90,180, 0), Time.deltaTime * 10f);
+
                 
                 if (currentTarget != hit.collider.gameObject)
                 {

@@ -168,10 +168,11 @@ public class PlayerController : MonoBehaviour
         if (cartRenderer == null) return;
 
         // 목표 알파값 설정
-        float targetAlpha = isHiding ? 0.5f : 1f;
+        float targetAlpha = isHiding ? 0.3f : 1f;
 
         // 인스펙터에 있는 여러 개의 머티리얼을 모두 가져와서 변경
         Material[] materials = cartRenderer.materials;
+
         for (int i = 0; i < materials.Length; i++)
         {
             Color color = materials[i].color;
