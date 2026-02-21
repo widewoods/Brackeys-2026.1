@@ -23,8 +23,9 @@ public class FruitLineOfSight : MonoBehaviour, ITargetSensor
 
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
 
-            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, distance, layerMask))
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, distance))
             {
+                if (!hit.collider.gameObject.CompareTag("Player")) return null;
                 Debug.DrawLine(transform.position, hit.point, Color.green);
                 return hit.collider.transform;
             }

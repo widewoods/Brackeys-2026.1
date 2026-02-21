@@ -32,7 +32,7 @@ public class BasicMover : MonoBehaviour, IMover
         if (TryGetRandomNavMeshPoint(homePos, idleRadius, out var p))
         {
             agent.SetDestination(p);
-            nextIdlePickTime = Time.time + idleRepathInterval;
+            nextIdlePickTime = Time.time + Random.Range(idleRepathInterval - 2f, idleRepathInterval + 2f);
         }
         else
         {
