@@ -1,9 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class QuitButton : MonoBehaviour
+public class QuitButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    private AudioSource pop;
+    private RectTransform rectTransform;
+
+    void Start()
+    {
+        pop = GetComponent<AudioSource>();
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    // 마우스를 올렸을 때 실행
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        pop.Play();
+        rectTransform.localScale = new Vector3(2.2f, 2.2f, 2.2f);
+    }
+
+    // 마우스가 나갔을 때 실행
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        rectTransform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
