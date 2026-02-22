@@ -18,6 +18,7 @@ public class FruitSpawner : MonoBehaviour
     {
         SpawnRandom();
         OnSpawnedSummary?.Invoke(counts);
+        CheckEndCondition.Instance.totalCount = spawnCount;
     }
 
     void SpawnRandom()
