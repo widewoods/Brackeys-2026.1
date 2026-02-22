@@ -8,9 +8,26 @@ public class FruitLineOfSight : MonoBehaviour, ITargetSensor
     [SerializeField] private float distance;
     [SerializeField] private int rayCount;
 
+    private float originalDistance;
+
     [SerializeField] private LayerMask layerMask;
 
     public bool hasLineOfSight;
+
+    void OnEnable()
+    {
+        PlayerController.OnHidingChanged += HandleHiding;
+    }
+
+    void OnDisable()
+    {
+        PlayerController.OnHidingChanged -= HandleHiding;
+    }
+
+    void Start()
+    {
+        originalDistance = distance;
+    }
 
     Transform CastSightCone(float coneAngleDeg, float distance, int rayCount)
     {
@@ -40,5 +57,10 @@ public class FruitLineOfSight : MonoBehaviour, ITargetSensor
     public Transform AcquireTarget()
     {
         return CastSightCone(coneAngleDeg, distance, rayCount);
+    }
+
+    private void HandleHiding(bool isHiding)
+    {
+        distance = isHiding ? originalDistance * 0.7f : originalDistance;
     }
 }

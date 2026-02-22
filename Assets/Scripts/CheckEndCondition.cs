@@ -35,7 +35,7 @@ public class CheckEndCondition : MonoBehaviour
         {
             if (other.GetComponent<FruitController>().currentState == FruitController.State.Catched)
             {
-                SceneManager.LoadScene(0); // Game over
+                StartCoroutine(other.GetComponent<EndingZoomOut>().ZoomOut());
             }
         }
     }
