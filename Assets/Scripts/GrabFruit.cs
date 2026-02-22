@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -23,6 +24,8 @@ public class GrabFruit : MonoBehaviour
 
     [SerializeField] private GameObject shoppingCart;
     [SerializeField] private List<GameObject> fruitPrefabs;
+
+    [SerializeField] private AudioSource grabSound;
 
     void Start()
     {
@@ -75,7 +78,10 @@ public class GrabFruit : MonoBehaviour
                         grabUI.ChangeFillAmount(0);
 
                         // TODO: 여기에 실제로 과일을 획득하거나 파괴하는 로직을 추가하세요.
-                        hit.collider.gameObject.SetActive(false); // 예시로 과일을 비활성화
+                        grabSound.Play();
+
+                        // hit.collider.gameObject.SetActive(false); // 예시로 과일을 비활성화
+                        Destroy(hit.collider.gameObject);
 
                         // Prefabs에서 해당 과일 복제
                         Debug.Log(hit.collider.gameObject.name);
