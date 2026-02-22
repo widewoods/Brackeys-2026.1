@@ -386,7 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f222642c248b19f4d856202ff38ca2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lampBlinking: {fileID: 355767675}
 --- !u!82 &355767675
 AudioSource:
   m_ObjectHideFlags: 0
@@ -878,7 +877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1614386395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -911,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 1}
+  m_Color: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1412,7 +1411,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1938390403}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: c7a1c402e434c4c96a590d4198a6e84b, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -1432,10 +1431,21 @@ PlayableDirector:
     value: {fileID: 355767675}
   - key: {fileID: 8058726898416259212, guid: c7a1c402e434c4c96a590d4198a6e84b, type: 2}
     value: {fileID: 355767675}
+  - key: {fileID: 1648510426000531438, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
+    value: {fileID: 135387912}
+  - key: {fileID: -6771295840561115882, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
+    value: {fileID: 6824746026963261809}
+  - key: {fileID: -5508315361216113485, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
+    value: {fileID: 1614386394}
+  - key: {fileID: 5974485433211930660, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
+    value: {fileID: 1614386398}
+  - key: {fileID: -3123422520990389186, guid: 6c78e8d7902544ddfa289b1216b9ccde, type: 2}
+    value: {fileID: 1732876104}
   m_ExposedReferences:
     m_References:
     - 555fb3e13633c451c8ab721ce5c23f54: {fileID: 1531647894}
     - 09cac9fe3609e4cd39365de1a93bbba7: {fileID: 226681355}
+    - 117d5321d7eb44680a441551215b1b1b: {fileID: 135387912}
 --- !u!4 &1938390405
 Transform:
   m_ObjectHideFlags: 0

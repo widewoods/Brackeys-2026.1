@@ -29,7 +29,7 @@ public class CatchPlayer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 FruitController.escapeCount += 1;
-                Debug.Log($"Need Count: {FruitController.goalEscapeCount-FruitController.escapeCount}");
+                Debug.Log($"Need Count: {FruitController.goalEscapeCount - FruitController.escapeCount}");
                 if (FruitController.escapeCount >= FruitController.goalEscapeCount)
                 {
                     HandleEscape();
@@ -43,10 +43,11 @@ public class CatchPlayer : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (((1 << other.gameObject.layer) & playerMask) == 0) return;
+        if (fruitController.currentState != FruitController.State.Chase) return;
         playerCollider = other.gameObject.GetComponentsInChildren<BoxCollider>();
         playerController = other.gameObject.GetComponent<PlayerController>();
         playerTransform = other.gameObject.transform;
-        
+
         HandleCollision();
     }
 
@@ -56,7 +57,7 @@ public class CatchPlayer : MonoBehaviour
         {
             return;
         }
-        
+
         Debug.Log("Contact with player");
         fruitController.currentState = FruitController.State.Catched;
         foreach (var collider in playerCollider)
@@ -74,7 +75,7 @@ public class CatchPlayer : MonoBehaviour
     void HandleEscape()
     {
         Debug.Log("Player escaped");
-        
+
         fruitController.currentState = FruitController.State.ReturnHome;
         foreach (var collider in playerCollider)
         {
