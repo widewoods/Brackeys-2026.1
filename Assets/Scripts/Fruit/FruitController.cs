@@ -23,9 +23,12 @@ public class FruitController : MonoBehaviour
     private float lastSeenTime;
 
     [Header("Home")]
-    [SerializeField] private Transform home;
+    [SerializeField] public Transform home;
     [SerializeField] private float returnHomeRadius;
     [SerializeField] private float farFromHomeRadius;
+
+    [Header("Type")]
+    public FruitType type;
 
     void Awake()
     {

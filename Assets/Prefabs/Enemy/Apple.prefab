@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8988550154452394857
 RectTransform:
   m_ObjectHideFlags: 0
@@ -408,17 +408,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.91
+      value: -14.189825
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.466
+      value: 0.267
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.91
+      value: 4.562645
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
@@ -543,7 +543,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 9017773123136090825}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.98
+  m_Radius: 1.32
   m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -573,8 +573,9 @@ MonoBehaviour:
   deaggroRange: 7
   loseSightTime: 2
   home: {fileID: 0}
-  returnHomeRadius: 1
+  returnHomeRadius: 0.4
   farFromHomeRadius: 10
+  type: {fileID: 11400000, guid: 33d9bb5ce435f4937a0f460f2414f09a, type: 2}
 --- !u!114 &8716414835103535461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,8 +588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234934f749ea4530bda23b82c6fdf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleRadius: 3
-  idleRepathInterval: 4
+  idleRadius: 30
+  idleRepathInterval: 3
   idleArriveDistance: 0.4
 --- !u!114 &3302399695549086723
 MonoBehaviour:
@@ -602,9 +603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1ef2fee0f174240bd57796575a9712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneAngleDeg: 40
-  distance: 7
-  rayCount: 7
+  coneAngleDeg: 60
+  distance: 8
+  rayCount: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 64

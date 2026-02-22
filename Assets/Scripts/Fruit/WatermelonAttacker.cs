@@ -10,7 +10,7 @@ public class WatermelonAttacker : MonoBehaviour, IAttacker
     [SerializeField] private float force = 5f;
     private FruitController brain;
 
-    void Start()
+    void Awake()
     {
         brain = GetComponent<FruitController>();
     }
@@ -31,5 +31,6 @@ public class WatermelonAttacker : MonoBehaviour, IAttacker
     {
         if (collision.gameObject.CompareTag("Ground")) return;
         brain.enabled = true;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
