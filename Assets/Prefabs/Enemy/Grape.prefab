@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2922951182027916220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -408,17 +408,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.89515495
+      value: 1.7506193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19400024
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.31929684
+      value: 1.0299734
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
@@ -574,8 +574,9 @@ MonoBehaviour:
   deaggroRange: 7
   loseSightTime: 2
   home: {fileID: 0}
-  returnHomeRadius: 1
+  returnHomeRadius: 0.4
   farFromHomeRadius: 10
+  type: {fileID: 11400000, guid: ef0e4166a060f4b07925ae476cb6fd4e, type: 2}
 --- !u!114 &6415300675700075564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,8 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234934f749ea4530bda23b82c6fdf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleRadius: 2
-  idleRepathInterval: 5
+  idleRadius: 30
+  idleRepathInterval: 3
   idleArriveDistance: 0.4
 --- !u!114 &8117812553880362808
 MonoBehaviour:
@@ -603,9 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1ef2fee0f174240bd57796575a9712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneAngleDeg: 40
-  distance: 7
-  rayCount: 7
+  coneAngleDeg: 60
+  distance: 8
+  rayCount: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -690,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 6341372192441249341, guid: ae1dc987c976a4b9c846f198ff8adc0a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.91
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 6341372192441249341, guid: ae1dc987c976a4b9c846f198ff8adc0a,
         type: 3}

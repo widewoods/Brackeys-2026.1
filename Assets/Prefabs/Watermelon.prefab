@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fceaf1b4b36d34eb1ad44cc89fd328d8,
         type: 3}
       propertyPath: m_Name
-      value: Watermelon Model
+      value: Watermelon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -95,6 +95,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -1519136688017984272}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fceaf1b4b36d34eb1ad44cc89fd328d8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8175009124508824798}
   m_SourcePrefab: {fileID: 100100000, guid: fceaf1b4b36d34eb1ad44cc89fd328d8, type: 3}
 --- !u!1 &1009435386761921643 stripped
 GameObject:
@@ -150,3 +154,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8175009124508824798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009435386761921643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bafc599e0964d90d8811492eaf13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &914657928181451416
 RectTransform:
   m_ObjectHideFlags: 0
@@ -408,17 +408,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.04
+      value: -15.015843
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.466
+      value: -0.19399893
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.91
+      value: 4.5850763
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
@@ -523,11 +523,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6430130529731582141}
+      addedObject: {fileID: 1324422039023377527}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b282d4029fb434873b7e1e121dec3662,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1324422039023377527}
+      addedObject: {fileID: 3985392009321912843}
   m_SourcePrefab: {fileID: 100100000, guid: b282d4029fb434873b7e1e121dec3662, type: 3}
 --- !u!1 &1273739721392191042 stripped
 GameObject:
@@ -544,7 +544,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1273739721392191042}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.98
+  m_Radius: 2.9
   m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -574,8 +574,9 @@ MonoBehaviour:
   deaggroRange: 7
   loseSightTime: 2
   home: {fileID: 0}
-  returnHomeRadius: 1
+  returnHomeRadius: 0.4
   farFromHomeRadius: 10
+  type: {fileID: 11400000, guid: 54f85f26f3082488f9df363f04b221bd, type: 2}
 --- !u!114 &6287762616474398892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,8 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234934f749ea4530bda23b82c6fdf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleRadius: 2
-  idleRepathInterval: 5
+  idleRadius: 30
+  idleRepathInterval: 3
   idleArriveDistance: 0.4
 --- !u!114 &5172989732808493280
 MonoBehaviour:
@@ -603,15 +604,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1ef2fee0f174240bd57796575a9712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneAngleDeg: 40
-  distance: 7
-  rayCount: 7
+  coneAngleDeg: 60
+  distance: 8
+  rayCount: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 64
   hasLineOfSight: 0
---- !u!135 &6430130529731582141
-SphereCollider:
+--- !u!114 &1324422039023377527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273739721392191042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7022fefcf3c4204a6f19a181d2ebd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!136 &3985392009321912843
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -628,24 +644,11 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.98
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1324422039023377527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273739721392191042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7022fefcf3c4204a6f19a181d2ebd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  serializedVersion: 2
+  m_Radius: 0.4475769
+  m_Height: 4.2188277
+  m_Direction: 0
+  m_Center: {x: -0.24583514, y: 0.54563075, z: 0}
 --- !u!4 &1938495262621347064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b282d4029fb434873b7e1e121dec3662,

@@ -46,9 +46,9 @@ public class GrabFruit : MonoBehaviour
                 // 손 움직이기
                 rightHand.position = Vector3.Lerp(rightHand.position, hit.point, Time.deltaTime * 10f);
                 // 카메라 보는 방향으로 손 회전하기
-                rightHand.rotation = Quaternion.Lerp(rightHand.rotation, Quaternion.LookRotation(hit.normal) * Quaternion.Euler(-90,180, 0), Time.deltaTime * 10f);
+                rightHand.rotation = Quaternion.Lerp(rightHand.rotation, Quaternion.LookRotation(hit.normal) * Quaternion.Euler(-90, 180, 0), Time.deltaTime * 10f);
 
-                
+
                 if (currentTarget != hit.collider.gameObject)
                 {
                     currentTarget = hit.collider.gameObject;
@@ -72,17 +72,20 @@ public class GrabFruit : MonoBehaviour
                         Debug.Log("Grab!");
 
                         currentHoldTime = 0f;
+                        grabUI.ChangeFillAmount(0);
 
                         // TODO: 여기에 실제로 과일을 획득하거나 파괴하는 로직을 추가하세요.
                         hit.collider.gameObject.SetActive(false); // 예시로 과일을 비활성화
 
                         // Prefabs에서 해당 과일 복제
+                        Debug.Log(hit.collider.gameObject.name);
                         GameObject grabbedFruit = Instantiate(fruitPrefabs.Find(prefab => prefab.name == hit.collider.gameObject.name));
-                        grabbedFruit.transform.localScale = hit.collider.gameObject.transform.localScale * 0.3f; // 크기 줄이기
+                        Debug.Log(grabbedFruit.name);
+                        grabbedFruit.transform.localScale = grabbedFruit.transform.localScale * 0.3f; // 크기 줄이기
                         grabbedFruit.SetActive(true); // 복제된 과일 활성화
 
                         // 복제된 과일은 카트 위에서 랜덤으로 떨어지기
-                        Vector3 randomOffset = shoppingCart.transform.right * Random.Range(-0.4f, 0.4f) + shoppingCart.transform.forward * Random.Range(-0.3f, 0.3f);
+                        Vector3 randomOffset = shoppingCart.transform.right * Random.Range(-0.4f, 0.4f) + shoppingCart.transform.forward * Random.Range(-0.2f, 0.2f);
                         grabbedFruit.transform.position = shoppingCart.transform.position + new Vector3(0, 1.5f, 0) + randomOffset;
 
                         // 과일의 부모를 카트로 설정하기
