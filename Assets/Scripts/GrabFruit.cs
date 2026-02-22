@@ -90,6 +90,7 @@ public class GrabFruit : MonoBehaviour
 
                         // 과일의 부모를 카트로 설정하기
                         grabbedFruit.transform.SetParent(shoppingCart.transform);
+                        CheckEndCondition.Instance.grabbedCount += 1;
                     }
                 }
                 else

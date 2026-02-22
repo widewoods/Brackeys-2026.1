@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 2003879966897003163}
   m_Layer: 7
   m_Name: Watermelon
-  m_TagString: Untagged
+  m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234934f749ea4530bda23b82c6fdf3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleRadius: 30
+  idleRadius: 10
   idleRepathInterval: 3
   idleArriveDistance: 0.4
 --- !u!1 &8391328307457787415
