@@ -8,6 +8,8 @@ public class CheckEndCondition : MonoBehaviour
     public static CheckEndCondition Instance;
     public int grabbedCount;
     public int totalCount;
+    private AudioSource audioSource;
+    [SerializeField] private GameObject fade;
 
     void Awake()
     {
@@ -19,6 +21,7 @@ public class CheckEndCondition : MonoBehaviour
 
         Instance = this;
         grabbedCount = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -36,6 +39,9 @@ public class CheckEndCondition : MonoBehaviour
             if (other.GetComponent<FruitController>().currentState == FruitController.State.Catched)
             {
                 StartCoroutine(other.GetComponent<EndingZoomOut>().ZoomOut());
+                audioSource.Play();
+                fade.SetActive(true);
+                fade.GetComponent<Animator>().Play("Fade");
             }
         }
     }
